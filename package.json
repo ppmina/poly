@@ -1,0 +1,37 @@
+{
+  "name": "poly",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc --noEmit -p tsconfig.json",
+    "paper": "tsx src/bin/paper-mm.ts",
+    "replay": "tsx src/bin/replay-mm.ts",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "research:signal": "uv run python research/generate_signal.py",
+    "research:replay": "uv run python research/replay_session.py"
+  },
+  "dependencies": {
+    "@polymarket/clob-client": "^5.8.1",
+    "dotenv": "^17.4.1",
+    "ethers": "^6.16.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "oxfmt": "^0.43.0",
+    "oxlint": "^1.58.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
+}
