@@ -395,7 +395,8 @@ export class PolymarketClobGateway implements PolymarketGateway {
     const event = parseMarketChannelMessage(payload);
     if (!event) {
       this.logger.debug("Ignoring unsupported market websocket message", {
-        payload: isRecord(payload) && typeof payload.event_type === "string" ? payload.event_type : null,
+        payload:
+          isRecord(payload) && typeof payload.event_type === "string" ? payload.event_type : null,
       });
       return;
     }
@@ -569,9 +570,7 @@ async function readSocketMessage(data: unknown): Promise<string | null> {
   }
 
   if (ArrayBuffer.isView(data)) {
-    return new TextDecoder().decode(
-      new Uint8Array(data.buffer, data.byteOffset, data.byteLength),
-    );
+    return new TextDecoder().decode(new Uint8Array(data.buffer, data.byteOffset, data.byteLength));
   }
 
   if (data instanceof Blob) {

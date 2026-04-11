@@ -50,11 +50,7 @@ export function buildLivelineSeries(
     });
 }
 
-export function formatMetricValue(
-  metric: ChartMetric,
-  value: number,
-  driverCount: number,
-): string {
+export function formatMetricValue(metric: ChartMetric, value: number, driverCount: number): string {
   if (metric === "position_history") {
     const position = Math.max(1, Math.min(driverCount, driverCount + 1 - Math.round(value)));
     return `P${position}`;

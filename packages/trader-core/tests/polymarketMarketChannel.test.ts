@@ -117,4 +117,3 @@ describe("polymarketMarketChannel helpers", () => {
     expect(snapshot.asks).toEqual(buildSnapshot().asks);
   });
 });
-

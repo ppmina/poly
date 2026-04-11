@@ -91,4 +91,3 @@ export interface FeedAdapter {
   getSession(seriesId: SeriesId, sessionId: string): SessionDefinition | undefined;
   streamSession(options: FeedStreamOptions): AsyncGenerator<SessionSnapshot>;
 }
-

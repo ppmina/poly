@@ -420,11 +420,16 @@ export function LiveRaceCenter({ catalog }: LiveRaceCenterProps) {
                   return (
                     <tr key={driver.driverId} className={selected ? "is-selected" : undefined}>
                       <td>
-                        <span className="position-badge position-badge-compact">P{driver.position}</span>
+                        <span className="position-badge position-badge-compact">
+                          P{driver.position}
+                        </span>
                       </td>
                       <td>
                         <div className="comparison-driver">
-                          <span className="driver-swatch" style={{ backgroundColor: driver.color }} />
+                          <span
+                            className="driver-swatch"
+                            style={{ backgroundColor: driver.color }}
+                          />
                           <div className="driver-ident">
                             <strong>{driver.shortLabel}</strong>
                             <span>{driver.label}</span>

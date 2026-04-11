@@ -172,7 +172,8 @@ export function applyMarketChannelTickSizeChangeEvent(
     ...state,
     marketId: event.market ?? state.marketId,
     tickSize,
-    timestamp: event.timestamp !== undefined ? normalizeTimestamp(event.timestamp) : state.timestamp,
+    timestamp:
+      event.timestamp !== undefined ? normalizeTimestamp(event.timestamp) : state.timestamp,
   };
 }
 
@@ -189,7 +190,8 @@ export function applyMarketChannelLastTradePriceEvent(
     ...state,
     marketId: event.market ?? state.marketId,
     lastTradePrice,
-    timestamp: event.timestamp !== undefined ? normalizeTimestamp(event.timestamp) : state.timestamp,
+    timestamp:
+      event.timestamp !== undefined ? normalizeTimestamp(event.timestamp) : state.timestamp,
   };
 }
 
@@ -278,8 +280,7 @@ function createBookMap(
   const map = new Map<number, number>();
 
   for (const level of levels) {
-    const price =
-      typeof level.price === "number" ? level.price : safeNumber(level.price);
+    const price = typeof level.price === "number" ? level.price : safeNumber(level.price);
     const size = typeof level.size === "number" ? level.size : safeNumber(level.size);
 
     if (price === null || size === null || size <= 0) {
@@ -292,10 +293,7 @@ function createBookMap(
   return map;
 }
 
-function toSortedLevels(
-  levels: Map<number, number>,
-  side: "buy" | "sell",
-): BookLevel[] {
+function toSortedLevels(levels: Map<number, number>, side: "buy" | "sell"): BookLevel[] {
   return [...levels.entries()]
     .map(([price, size]) => ({ price, size }))
     .sort((left, right) => (side === "buy" ? right.price - left.price : left.price - right.price));
