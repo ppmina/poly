@@ -1,6 +1,8 @@
 dist/
 artifacts/
 coverage/
+.next/
+.turbo/
 .env
 .venv/
 .mypy_cache/

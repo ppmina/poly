@@ -1,52 +1,58 @@
 # Poly
 
-Execution-first Polymarket trading bot scaffold for passive market making, with a paper executor in TypeScript and an offline research sidecar in Python.
+Poly is now a monorepo with two product tracks:
 
-## What is implemented
+- a Polymarket trading runtime in TypeScript plus Python research tooling
+- a new multi-series motorsport web app that streams `liveline` charts for live race gaps, intervals, and position history
 
-- TypeScript execution runtime with:
-  - env/config validation
-  - Polymarket CLOB gateway wrapper
-  - passive market-making strategy engine
-  - paper execution with simulated fills
-  - JSONL artifact capture for snapshots, decisions, orders, fills, and sessions
-  - replay gateway for offline session playback
-- Python research workspace with:
-  - shared `SignalSnapshot` contract helpers
-  - baseline signal generator from captured JSONL snapshots
-  - replay/session summarizer
+## Workspace Layout
 
-## Quick start
+- `apps/trader`: CLI entrypoints for the paper and replay bots
+- `apps/web`: Next.js motorsport frontend powered by `liveline`
+- `packages/trader-core`: shared Polymarket bot runtime, strategy, gateways, and tests
+- `packages/motorsport-core`: racing-domain types, replay/demo adapters, and Liveline transforms
+- `tools/research`: Python replay and signal-generation sidecar
+
+## Quick Start
 
 1. Copy `.env.example` values into `.env`
-2. Install dependencies:
+2. Install everything:
    `make install`
-3. Run the paper bot:
+3. Start the web app:
+   `pnpm dev:web`
+4. Run the paper bot:
    `make paper`
 
-## Useful commands
+## Useful Commands
 
 - Install everything: `make install`
-- Type-check: `make check`
+- Type-check the workspace: `make check`
 - Run tests: `make test`
-- Build: `make build`
+- Build the workspace: `make build`
+- Run the web app locally: `pnpm dev:web`
 - Paper bot: `make paper`
 - Replay bot: `make replay REPLAY_INPUT_PATH=artifacts/market-snapshots.jsonl`
 - Generate a baseline signal:
   `make signal INPUT=artifacts/market-snapshots.jsonl MARKET=<market-id>`
-- Summarize a session:
+- Summarize a captured session:
   `make summary INPUT=artifacts/market-snapshots.jsonl`
 
-## Tooling
+## Toolchain Guardrail
 
-- `Makefile` is the top-level convenience layer for local workflows.
-- `package.json` remains the source of truth for TypeScript commands.
-- `pyproject.toml` and `uv.lock` remain the source of truth for Python environment management.
-- You can always run the underlying commands directly with `pnpm ...` or `uv run ...` when debugging.
+- Shared tooling stays root-owned: `typescript`, `vitest`, `oxlint`, and `oxfmt` should be declared once in the root `package.json`.
+- Workspace packages should reuse the root toolchain instead of redeclaring those dependencies locally.
+- Adding a competing lint/test/format/compile tool should happen only as part of an explicit repo-wide migration.
 
-## Runtime notes
+## Motorsports App Notes
+
+- The first web release defaults to a demo replay feed so the app always has live-moving chart data.
+- Series currently exposed in the UI: `F1`, `IndyCar`, `WEC`, and `Formula E`.
+- The shared feed adapter contract is ready for a real provider-backed stream via `LIVE_FEED_MODE=provider`.
+
+## Trading Runtime Notes
 
 - Default mode is paper trading only.
+- Live market data now uses the Polymarket market WebSocket; `POLL_INTERVAL_MS` remains replay-only.
 - Live execution is guarded behind `ALLOW_LIVE_EXECUTION=true`.
-- The TypeScript bot ignores missing, stale, malformed, or cross-market signal files and falls back to rules-only quoting.
+- The bot ignores missing, stale, malformed, or cross-market signal files and falls back to rules-only quoting.
 - A kill switch file at `KILL_SWITCH_FILE` can stop quoting with either `stop`, `true`, or JSON such as `{"stop": true, "reason": "manual stop"}`.

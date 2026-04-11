@@ -20,7 +20,7 @@ py-sync: ## Sync the Python environment with uv
 
 check: ## Run TypeScript checks and Python syntax validation
 	pnpm check
-	uv run python -m py_compile research/signal_contract.py research/generate_signal.py research/replay_session.py
+	uv run python -m py_compile tools/research/signal_contract.py tools/research/generate_signal.py tools/research/replay_session.py
 
 test: ## Run the TypeScript test suite
 	pnpm test
@@ -37,21 +37,21 @@ replay: guard-REPLAY_INPUT_PATH ## Replay a captured market session
 signal: guard-INPUT ## Generate a baseline signal from JSONL snapshots
 	@set -e; \
 	if [ -n "$(MARKET)" ]; then \
-		uv run python research/generate_signal.py --input "$(INPUT)" --market "$(MARKET)" --output "$(OUTPUT)"; \
+		uv run python tools/research/generate_signal.py --input "$(INPUT)" --market "$(MARKET)" --output "$(OUTPUT)"; \
 	else \
-		uv run python research/generate_signal.py --input "$(INPUT)" --output "$(OUTPUT)"; \
+		uv run python tools/research/generate_signal.py --input "$(INPUT)" --output "$(OUTPUT)"; \
 	fi
 
 summary: guard-INPUT ## Summarize a captured JSONL market session
 	@set -e; \
 	if [ -n "$(MARKET)" ]; then \
-		uv run python research/replay_session.py --input "$(INPUT)" --market "$(MARKET)"; \
+		uv run python tools/research/replay_session.py --input "$(INPUT)" --market "$(MARKET)"; \
 	else \
-		uv run python research/replay_session.py --input "$(INPUT)"; \
+		uv run python tools/research/replay_session.py --input "$(INPUT)"; \
 	fi
 
 clean: ## Remove generated local artifacts and caches
-	rm -rf dist coverage artifacts .mypy_cache
+	rm -rf dist coverage artifacts .mypy_cache .turbo apps/web/.next packages/trader-core/dist packages/motorsport-core/dist
 
 guard-%:
 	@if [ -z "$($*)" ]; then \

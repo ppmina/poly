@@ -1,0 +1,20 @@
+{
+  "name": "@poly/trader",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit -p tsconfig.json",
+    "check": "tsc --noEmit -p tsconfig.json",
+    "paper": "pnpm exec tsx src/bin/paper-mm.ts",
+    "replay": "pnpm exec tsx src/bin/replay-mm.ts",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix"
+  },
+  "dependencies": {
+    "@poly/trader-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "tsx": "^4.21.0"
+  }
+}
