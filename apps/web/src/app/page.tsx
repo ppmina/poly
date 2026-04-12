@@ -1,11 +1,9 @@
-import { getSeriesCatalog } from "@poly/motorsport-core";
-
-import { LiveRaceCenter } from "@/components/live-race-center";
+import { ResearchWorkbench } from "@/components/research-workbench";
 
 export default function Home() {
   return (
     <main className="page-shell">
-      <LiveRaceCenter catalog={getSeriesCatalog()} />
+      <ResearchWorkbench />
     </main>
   );
 }

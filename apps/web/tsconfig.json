@@ -12,7 +12,9 @@
     "plugins": [{ "name": "next" }],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@poly/trader-core": ["../../packages/trader-core/src/index.ts"],
+      "@poly/trader-core/*": ["../../packages/trader-core/src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

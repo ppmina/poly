@@ -3,12 +3,12 @@
 Poly is now a monorepo with two product tracks:
 
 - a Polymarket trading runtime in TypeScript plus Python research tooling
-- a new multi-series motorsport web app that streams `liveline` charts for live race gaps, intervals, and position history
+- a Next.js research workbench that scores live prediction values against future realized midpoints
 
 ## Workspace Layout
 
 - `apps/trader`: CLI entrypoints for the paper and replay bots
-- `apps/web`: Next.js motorsport frontend powered by `liveline`
+- `apps/web`: Next.js prediction research frontend powered by `liveline`
 - `packages/trader-core`: shared Polymarket bot runtime, strategy, gateways, and tests
 - `packages/motorsport-core`: racing-domain types, replay/demo adapters, and Liveline transforms
 - `tools/research`: Python replay and signal-generation sidecar
@@ -16,11 +16,12 @@ Poly is now a monorepo with two product tracks:
 ## Quick Start
 
 1. Copy `.env.example` values into `.env`
-2. Install everything:
+2. Set `POLYMARKET_CHAIN_ID`, `POLYMARKET_MARKET_ID`, and `POLYMARKET_TOKEN_ID` for the market you want the web app to score
+3. Install everything:
    `make install`
-3. Start the web app:
+4. Start the web app:
    `pnpm dev:web`
-4. Run the paper bot:
+5. Run the paper bot:
    `make paper`
 
 ## Useful Commands
@@ -43,11 +44,13 @@ Poly is now a monorepo with two product tracks:
 - Workspace packages should reuse the root toolchain instead of redeclaring those dependencies locally.
 - Adding a competing lint/test/format/compile tool should happen only as part of an explicit repo-wide migration.
 
-## Motorsports App Notes
+## Web App Notes
 
-- The first web release defaults to a demo replay feed so the app always has live-moving chart data.
-- Series currently exposed in the UI: `F1`, `IndyCar`, `WEC`, and `Formula E`.
-- The shared feed adapter contract is ready for a real provider-backed stream via `LIVE_FEED_MODE=provider`.
+- The homepage is now a live research dashboard for one configured Polymarket market.
+- If those market env values are missing or invalid, the web app stays up and shows an inline setup checklist instead of returning a 500.
+- Predictions are sampled every 30 seconds and scored against the first valid midpoint at `+5 minutes`.
+- Accuracy is currently defined as `abs(predictionValue - truthValue) <= 0.02`.
+- The legacy motorsport package remains in the repo, but it is no longer the active web surface.
 
 ## Trading Runtime Notes
 

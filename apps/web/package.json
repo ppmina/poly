@@ -3,14 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm exec next build",
+    "build": "pnpm exec next build --webpack",
     "check": "tsc --noEmit -p tsconfig.json",
-    "dev": "pnpm exec next dev",
+    "dev": "pnpm exec next dev --webpack",
     "lint": "oxlint .",
     "lint:fix": "oxlint . --fix"
   },
   "dependencies": {
-    "@poly/motorsport-core": "workspace:*",
+    "@poly/trader-core": "workspace:*",
     "liveline": "^0.0.7",
     "next": "^16.2.3",
     "react": "^19.2.5",

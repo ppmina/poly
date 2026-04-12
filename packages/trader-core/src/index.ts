@@ -11,6 +11,7 @@ export * from "./logger.js";
 export * from "./runtime/bootstrap.js";
 export * from "./runtime/killSwitch.js";
 export * from "./runtime/tradingBot.js";
+export * from "./research/index.js";
 export * from "./signals/fileSignalSource.js";
 export * from "./strategy/fairValue.js";
 export * from "./strategy/strategyEngine.js";

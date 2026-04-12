@@ -4,8 +4,8 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Poly Race Line",
-  description: "Live multi-series motorsport traces powered by Liveline.",
+  title: "Poly Research Workbench",
+  description: "Live prediction scoring against realized truth for Polymarket research.",
 };
 
 export default function RootLayout({
