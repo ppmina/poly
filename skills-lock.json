@@ -46,6 +46,11 @@
       "sourceType": "github",
       "computedHash": "669a671f855be8773e4c2936e54d4243fbd1d273f87633158544efe3dbc4d825"
     },
+    "grimoire-polymarket": {
+      "source": "franalgaba/grimoire",
+      "sourceType": "github",
+      "computedHash": "fac17b7cfaf4522b75f4f7e7ed6b8decca1ff9af986d9ad3d18b1e394fd20963"
+    },
     "impeccable": {
       "source": "pbakaus/impeccable",
       "sourceType": "github",
