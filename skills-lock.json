@@ -21,6 +21,11 @@
       "sourceType": "github",
       "computedHash": "1787478962577c9d5bde26e89e47c1654aa9c8f3c47c316a026731db0000a92e"
     },
+    "brainstorming": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "8df9b47092524833138b58682d03f2e153a242e550d1693657afdbee0cc9cdb0"
+    },
     "clarify": {
       "source": "pbakaus/impeccable",
       "sourceType": "github",
@@ -41,15 +46,65 @@
       "sourceType": "github",
       "computedHash": "1f6f4adee0b964e8344c0baef46b4e303ab3ba20932907bcbb1444ba7b3273b2"
     },
+    "dispatching-parallel-agents": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "e21044ae7496fc285f1df9ff3fb518a3a20bea6f5216c1f59f4987e12c769a0a"
+    },
     "distill": {
       "source": "pbakaus/impeccable",
       "sourceType": "github",
       "computedHash": "669a671f855be8773e4c2936e54d4243fbd1d273f87633158544efe3dbc4d825"
     },
+    "executing-plans": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "2f709d1a2c7564f8ce6a9bb707e7f5451117ba80f8e8e2302662c29bc61246a6"
+    },
+    "finishing-a-development-branch": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "9edba9a38684c060fdc38290f640e1dc0c37de286723ac9be73bacacf7cd6f3d"
+    },
+    "grimoire": {
+      "source": "franalgaba/grimoire",
+      "sourceType": "github",
+      "computedHash": "c05435ba71e26fba8e38831fa727d835064fb809ee642249a6f5fd5ff6cf53ee"
+    },
+    "grimoire-aave": {
+      "source": "franalgaba/grimoire",
+      "sourceType": "github",
+      "computedHash": "055807088448cce0186b225eb6ba822099bd155d58019987c57c6677bc362645"
+    },
+    "grimoire-across": {
+      "source": "franalgaba/grimoire",
+      "sourceType": "github",
+      "computedHash": "63838e30456d3135f31103c30ae04da30cd182aa07ffdf0561422a3b984422cd"
+    },
+    "grimoire-hyperliquid": {
+      "source": "franalgaba/grimoire",
+      "sourceType": "github",
+      "computedHash": "d318769b836858c3c87ebf916ae6bb90f57ddeb2b63cd54bcb0361667d12bd97"
+    },
+    "grimoire-morpho-blue": {
+      "source": "franalgaba/grimoire",
+      "sourceType": "github",
+      "computedHash": "cf1ed3893e5e399e6b4141af77e3581b6ced093cb3b453d7470bd98fe3987917"
+    },
+    "grimoire-pendle": {
+      "source": "franalgaba/grimoire",
+      "sourceType": "github",
+      "computedHash": "f9d589b2c27a05b2d826c0852cd861740b7296a3e714dbd5943eeaa03283ba8b"
+    },
     "grimoire-polymarket": {
       "source": "franalgaba/grimoire",
       "sourceType": "github",
       "computedHash": "fac17b7cfaf4522b75f4f7e7ed6b8decca1ff9af986d9ad3d18b1e394fd20963"
+    },
+    "grimoire-uniswap": {
+      "source": "franalgaba/grimoire",
+      "sourceType": "github",
+      "computedHash": "a03663481e15bfcb91aa60f09d2c5cbe242f1694e0b384b83d99e243979204d2"
     },
     "impeccable": {
       "source": "pbakaus/impeccable",
@@ -81,20 +136,65 @@
       "sourceType": "github",
       "computedHash": "2c20b12bb4ece445d45fc63bda020aecf78b3cdf6d593beb59c273f658293130"
     },
+    "receiving-code-review": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "2760c85d4f4117b0006e7ba755f4bbd61f8f4c185f347999763c97f507274e30"
+    },
+    "requesting-code-review": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "246e65cd72a7e360987d94e6c61564ce6d71c6361d1784d529d70e4cbbe8522d"
+    },
     "shape": {
       "source": "pbakaus/impeccable",
       "sourceType": "github",
       "computedHash": "8edad33758f2461f51afdb51741bfcc4cc57d84ea42e2751a84be2c6a2d48f69"
+    },
+    "subagent-driven-development": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "a197f8e5fba5ea59013e1adbaa90dd42db35de8f074feca200c8038de584a83b"
+    },
+    "systematic-debugging": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "72e9ab72627e4fd8ed26a582e82309a98ecdc4f6e1c99418430ac05682c9e91d"
+    },
+    "test-driven-development": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "126f1ebf6ccd414f42544f6e83d8cc5adb089e1108eaffb7c400701e37eecd9f"
     },
     "typeset": {
       "source": "pbakaus/impeccable",
       "sourceType": "github",
       "computedHash": "1cd76e560d1ba25b0bd5f7adfa2957a9f653a3ad0b031d467221154fcd1e0423"
     },
+    "using-git-worktrees": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "52bbb4b6e80918e83e92a1514f3b3757712154c2a8a42de24919e48a794c54fc"
+    },
     "using-superpowers": {
       "source": "obra/superpowers",
       "sourceType": "github",
       "computedHash": "e0eced9fbb205c212f420aded0c6f2bf5d5f059254679a8459b4fe72390160be"
+    },
+    "verification-before-completion": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "9b446f0c7fe1cfb560b1d34439523b1a76d5f177290007b2c053a1c749a4a8ba"
+    },
+    "writing-plans": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "bfaed11054ad8021c66860244e2d2e0d1eca483ae9f5fbfcb956e99c61f5c3d7"
+    },
+    "writing-skills": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "c0a92e629e39ea91b1f54da67a6aa92723008a8ef5b500c6de078f55485937c7"
     }
   }
 }
