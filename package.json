@@ -13,9 +13,12 @@
     "fmt:check": "oxfmt . --check",
     "paper": "pnpm --filter @poly/trader paper",
     "replay": "pnpm --filter @poly/trader replay",
-    "test": "turbo run test",
+    "research:dataset": "uv run python tools/research/build_dataset.py",
+    "research:replay": "uv run python tools/research/replay_session.py",
     "research:signal": "uv run python tools/research/generate_signal.py",
-    "research:replay": "uv run python tools/research/replay_session.py"
+    "research:signal:nn": "uv run python tools/research/generate_nn_signal.py",
+    "research:train": "uv run python tools/research/train_signal_model.py",
+    "test": "turbo run test"
   },
   "devDependencies": {
     "oxfmt": "^0.43.0",

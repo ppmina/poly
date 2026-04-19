@@ -11,7 +11,7 @@ Poly is now a monorepo with two product tracks:
 - `apps/web`: Next.js prediction research frontend powered by `liveline`
 - `packages/trader-core`: shared Polymarket bot runtime, strategy, gateways, and tests
 - `packages/motorsport-core`: racing-domain types, replay/demo adapters, and Liveline transforms
-- `tools/research`: Python replay and signal-generation sidecar
+- `tools/research`: Python replay, dataset-building, and signal-generation sidecar
 
 ## Quick Start
 
@@ -27,6 +27,7 @@ Poly is now a monorepo with two product tracks:
 ## Useful Commands
 
 - Install everything: `make install`
+- Install research training extras: `make install-train`
 - Type-check the workspace: `make check`
 - Run tests: `make test`
 - Build the workspace: `make build`
@@ -35,6 +36,10 @@ Poly is now a monorepo with two product tracks:
 - Replay bot: `make replay REPLAY_INPUT_PATH=artifacts/market-snapshots.jsonl`
 - Generate a baseline signal:
   `make signal INPUT=artifacts/market-snapshots.jsonl MARKET=<market-id>`
+- Train the neural signal model:
+  `make train-signal INPUT=artifacts/market-snapshots.jsonl MARKET=<market-id> MODEL_OUT_DIR=artifacts/models/latest`
+- Generate a neural signal:
+  `make signal-nn INPUT=artifacts/market-snapshots.jsonl MARKET=<market-id> CHECKPOINT=artifacts/models/latest/best-checkpoint.npz`
 - Summarize a captured session:
   `make summary INPUT=artifacts/market-snapshots.jsonl`
 
@@ -50,6 +55,7 @@ Poly is now a monorepo with two product tracks:
 - If those market env values are missing or invalid, the web app stays up and shows an inline setup checklist instead of returning a 500.
 - Predictions are sampled every 30 seconds and scored against the first valid midpoint at `+5 minutes`.
 - Accuracy is currently defined as `abs(predictionValue - truthValue) <= 0.02`.
+- The neural research loop trains against that same `+5 minute` target and reports validation MAE plus the existing band-accuracy metric.
 - The legacy motorsport package remains in the repo, but it is no longer the active web surface.
 
 ## Trading Runtime Notes
