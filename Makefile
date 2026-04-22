@@ -5,7 +5,7 @@ MODEL_OUT_DIR ?= artifacts/models/latest
 OUTPUT ?= artifacts/signals/current.json
 CHECKPOINT ?= $(MODEL_OUT_DIR)/best-checkpoint.npz
 
-.PHONY: help install install-train js-install py-sync py-sync-train check test py-test build paper replay signal dataset train-signal signal-nn summary clean guard-%
+.PHONY: help install install-train js-install py-sync py-sync-train check check-js check-py test test-js test-py build paper replay signal dataset train-signal signal-nn summary clean guard-%
 
 help: ## Show available targets
 	@awk 'BEGIN {FS = ":.*## "}; /^[a-zA-Z0-9_-]+:.*## / {printf "  %-12s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -27,15 +27,20 @@ py-sync: ## Sync the Python environment with uv
 py-sync-train: ## Sync the Python environment with the accelerated training extras
 	uv sync --extra train
 
-check: ## Run TypeScript checks and Python syntax validation
+check: check-js check-py ## Run TypeScript and Python checks
+
+check-js: ## Run TypeScript checks
 	pnpm check
-	uv run python -m compileall -q tools/research
 
-test: ## Run the TypeScript test suite
+check-py: ## Lint Python research code with ruff
+	uv run ruff check tools/research
+
+test: test-js test-py ## Run TypeScript and Python test suites
+
+test-js: ## Run the TypeScript test suite
 	pnpm test
-	uv run python -m unittest discover -s tools/research/tests
 
-py-test: ## Run Python research tests
+test-py: ## Run Python research tests
 	uv run python -m unittest discover -s tools/research/tests
 
 build: ## Build the TypeScript project
