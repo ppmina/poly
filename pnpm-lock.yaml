@@ -39,9 +39,9 @@ importers:
 
   apps/web:
     dependencies:
-      '@poly/motorsport-core':
+      '@poly/trader-core':
         specifier: workspace:*
-        version: link:../../packages/motorsport-core
+        version: link:../../packages/trader-core
       liveline:
         specifier: ^0.0.7
         version: 0.0.7(react@19.2.5)
