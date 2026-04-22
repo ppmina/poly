@@ -1,5 +1,5 @@
 dist/
-artifacts/
+/artifacts/
 coverage/
 .next/
 .turbo/
