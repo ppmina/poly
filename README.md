@@ -13,6 +13,55 @@ Poly is now a monorepo with two product tracks:
 - `packages/motorsport-core`: racing-domain types, replay/demo adapters, and Liveline transforms
 - `tools/research`: Python replay, dataset-building, and signal-generation sidecar
 
+## Repo Map
+
+```mermaid
+flowchart LR
+    subgraph Apps["apps/"]
+        Web["web<br/>Next.js research dashboard"]
+        Trader["trader<br/>paper + replay CLIs"]
+    end
+
+    subgraph Packages["packages/"]
+        TraderCore["trader-core<br/>runtime, strategy, gateways"]
+        MotorsportCore["motorsport-core<br/>racing types + adapters"]
+    end
+
+    subgraph Tools["tools/research (Python)"]
+        Replay["replay_session"]
+        Dataset["build_dataset"]
+        SignalBaseline["generate_signal"]
+        Train["train_signal_model"]
+        SignalNN["generate_nn_signal"]
+    end
+
+    subgraph External["External"]
+        Polymarket[("Polymarket<br/>WS + CLOB")]
+        Liveline[("liveline")]
+    end
+
+    Snapshots[/"artifacts/<br/>market-snapshots.jsonl"/]
+    SignalFile[/"signal file"/]
+    Checkpoint[/"model checkpoint"/]
+
+    Web --> Liveline
+    Web --> MotorsportCore
+    Trader --> TraderCore
+    TraderCore --> Polymarket
+    TraderCore -. reads .-> SignalFile
+
+    Polymarket -. capture .-> Snapshots
+    Snapshots --> Replay
+    Snapshots --> Dataset
+    Dataset --> Train
+    Train --> Checkpoint
+    Snapshots --> SignalBaseline
+    Snapshots --> SignalNN
+    Checkpoint --> SignalNN
+    SignalBaseline --> SignalFile
+    SignalNN --> SignalFile
+```
+
 ## Quick Start
 
 1. Copy `.env.example` values into `.env`
