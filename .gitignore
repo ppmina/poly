@@ -5,6 +5,8 @@ coverage/
 .turbo/
 .env
 .venv/
+.uv-cache/
+.ruff_cache/
 .mypy_cache/
 node_modules/
 __pycache__/
