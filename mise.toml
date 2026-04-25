@@ -1,2 +1,13 @@
 [tools]
 lefthook = "latest"
+node = "lts"
+
+[env]
+_.path = ['{{config_root}}/node_modules/.bin']
+
+[hooks]
+postinstall = 'corepack enable'
+
+[settings]
+experimental = true
+python.uv_venv_auto = "create|source"
