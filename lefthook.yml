@@ -1,0 +1,26 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: oxfmt
+      glob: "*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}"
+      exclude:
+        - ".agents/**/*"
+      run: ./node_modules/.bin/oxfmt {staged_files}
+      stage_fixed: true
+
+    - name: oxlint
+      glob: "*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}"
+      exclude:
+        - ".agents/**/*"
+      run: ./node_modules/.bin/oxlint --fix --quiet {staged_files}
+      stage_fixed: true
+
+    - name: ruff-format
+      glob: "*.py"
+      run: ./.venv/bin/ruff format -q {staged_files}
+      stage_fixed: true
+
+    - name: ruff-check
+      glob: "*.py"
+      run: ./.venv/bin/ruff check --fix -q {staged_files}
+      stage_fixed: true
