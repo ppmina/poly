@@ -11,73 +11,20 @@ vi.mock("@/lib/research-hub", () => ({
   getResearchHub: vi.fn(),
 }));
 
-const configuredBootstrap: { mode: "configured"; config: AppConfig } = {
-  mode: "configured",
-  config: {
-    botName: "test-bot",
-    executionMode: "paper",
-    allowLiveExecution: false,
-    polymarketHost: "https://clob.polymarket.com",
-    polymarketChainId: 137,
-    marketId: "market-1",
-    tokenId: "token-1",
-    pollIntervalMs: 2_500,
-    replayInputPath: undefined,
-    replaySpeedMultiplier: 10,
-    baseSpreadBps: 120,
-    quoteSize: 10,
-    minQuoteSize: 1,
-    inventorySkewBps: 80,
-    paperInitialCash: 1_000,
-    paperFillSlippageBps: 2,
-    signalFilePath: "/tmp/signal.json",
-    signalMaxAgeMs: 30_000,
-    artifactsDir: "/tmp/artifacts",
-    killSwitchFile: "/tmp/kill-switch.json",
-    riskLimits: {
-      maxPosition: 50,
-      maxNotional: 25,
-      maxDrawdown: 5,
-      staleDataMs: 15_000,
-    },
-    credentials: {
-      privateKey: undefined,
-      funderAddress: undefined,
-      apiKey: undefined,
-      apiSecret: undefined,
-      apiPassphrase: undefined,
-      signatureType: 1,
-    },
-  },
+vi.mock("@tanstack/react-router", () => ({
+  createFileRoute: () => (config: unknown) => config,
+}));
+
+const configuredBootstrap = {
+  mode: "configured" as const,
+  config: { marketId: "market-1", tokenId: "token-1" } as AppConfig,
 };
 
-const streamingState: ResearchDashboardState = {
-  connectionState: "live",
-  market: {
-    marketId: "market-1",
-    tokenId: "token-1",
-    source: "live",
-    lastSnapshotAt: 1_710_000_000_000,
-    currentMidpoint: 0.5,
-    tickSize: 0.01,
-    predictionCadenceMs: 30_000,
-    truthHorizonMs: 300_000,
-    accuracyBand: 0.02,
-  },
-  signalState: {
-    status: "ready",
-    confidence: 0.9,
-    timestamp: 1_710_000_000_000,
-    fairValueAdjBps: 25,
-    message: null,
-  },
-  pendingCount: 1,
-  rollingAccuracy: null,
-  latestPrediction: null,
-  latestResolved: null,
-  resolvedSeries: [],
+const streamingState = {
+  market: { marketId: "market-1" },
   recentEvaluations: [],
-};
+  resolvedSeries: [],
+} as unknown as ResearchDashboardState;
 
 afterEach(() => {
   vi.clearAllMocks();
@@ -102,8 +49,8 @@ describe("/api/live route", () => {
       },
     });
 
-    const { GET } = await import("./route");
-    const response = await GET();
+    const { handleLiveStreamRequest } = await import("./live");
+    const response = handleLiveStreamRequest();
     const text = await readUntilSnapshot(response);
 
     expect(response.status).toBe(200);
@@ -127,8 +74,8 @@ describe("/api/live route", () => {
       } as unknown as ReturnType<typeof getResearchHub>,
     );
 
-    const { GET } = await import("./route");
-    const response = await GET();
+    const { handleLiveStreamRequest } = await import("./live");
+    const response = handleLiveStreamRequest();
     const text = await readUntilSnapshot(response);
 
     expect(response.status).toBe(200);

@@ -3,22 +3,27 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm exec next build --webpack",
-    "check": "tsc --noEmit -p tsconfig.json",
-    "dev": "pnpm exec next dev --webpack",
+    "build": "vite build",
+    "check": "tsgo --noEmit -p tsconfig.json",
+    "dev": "vite dev",
     "lint": "oxlint .",
-    "lint:fix": "oxlint . --fix"
+    "lint:fix": "oxlint . --fix",
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "dependencies": {
     "@poly/trader-core": "workspace:*",
+    "@tanstack/react-router": "^1.168.24",
+    "@tanstack/react-start": "^1.167.48",
     "liveline": "^0.0.7",
-    "next": "^16.2.3",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   },
   "devDependencies": {
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3"
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.10"
   }
 }

@@ -1,22 +1,41 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "es2023"],
-    "allowJs": false,
-    "jsx": "preserve",
-    "module": "esnext",
+    "target": "ES2022",
+    "jsx": "react-jsx",
+    "module": "ESNext",
     "moduleResolution": "bundler",
-    "ignoreDeprecations": "6.0",
+    "lib": [
+      "ES2023",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "vite/client"
+    ],
+    "allowImportingTsExtensions": true,
     "noEmit": true,
     "incremental": true,
-    "plugins": [{ "name": "next" }],
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@poly/trader-core": ["../../packages/trader-core/src/index.ts"],
-      "@poly/trader-core/*": ["../../packages/trader-core/src/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@poly/trader-core": [
+        "../../packages/trader-core/src/index.ts"
+      ],
+      "@poly/trader-core/*": [
+        "../../packages/trader-core/src/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    ".tanstack",
+    ".output",
+    "dist"
+  ]
 }

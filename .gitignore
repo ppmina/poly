@@ -1,7 +1,8 @@
 dist/
 /artifacts/
 coverage/
-.next/
+.output/
+.tanstack/
 .turbo/
 .env
 .venv/

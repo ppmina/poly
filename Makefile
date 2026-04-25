@@ -93,7 +93,7 @@ summary: guard-INPUT ## Summarize a captured JSONL market session
 	fi
 
 clean: ## Remove generated local artifacts and caches
-	rm -rf dist coverage artifacts .mypy_cache .turbo apps/web/.next packages/trader-core/dist packages/motorsport-core/dist
+	rm -rf dist coverage artifacts .mypy_cache .turbo apps/web/.tanstack apps/web/.output apps/web/dist packages/trader-core/dist packages/motorsport-core/dist
 
 guard-%:
 	@if [ -z "$($*)" ]; then \
