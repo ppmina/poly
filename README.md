@@ -3,12 +3,12 @@
 Poly is now a monorepo with two product tracks:
 
 - a Polymarket trading runtime in TypeScript plus Python research tooling
-- a Next.js research workbench that scores live prediction values against future realized midpoints
+- a TanStack Start research workbench that scores live prediction values against future realized midpoints
 
 ## Workspace Layout
 
 - `apps/trader`: CLI entrypoints for the paper and replay bots
-- `apps/web`: Next.js prediction research frontend powered by `liveline`
+- `apps/web`: TanStack Start (Vite + React 19) prediction research frontend powered by `liveline`
 - `packages/trader-core`: shared Polymarket bot runtime, strategy, gateways, and tests
 - `packages/motorsport-core`: racing-domain types, replay/demo adapters, and Liveline transforms
 - `tools/research`: Python replay, dataset-building, and signal-generation sidecar
@@ -18,7 +18,7 @@ Poly is now a monorepo with two product tracks:
 ```mermaid
 flowchart LR
     subgraph Apps["apps/"]
-        Web["web<br/>Next.js research dashboard"]
+        Web["web<br/>TanStack Start research dashboard"]
         Trader["trader<br/>paper + replay CLIs"]
     end
 
@@ -64,19 +64,23 @@ flowchart LR
 
 ## Quick Start
 
-1. Copy `.env.example` values into `.env`
-2. Set `POLYMARKET_CHAIN_ID`, `POLYMARKET_MARKET_ID`, and `POLYMARKET_TOKEN_ID` for the market you want the web app to score
-3. Install everything:
+1. Install [`mise`](https://mise.jdx.dev/) and [`uv`](https://docs.astral.sh/uv/), then run `mise install` from the repo root. `mise` provisions `node` (LTS) and `lefthook`, runs `corepack enable` so `pnpm` matches `package.json`, and auto-creates/sources the `uv` venv when you `cd` in.
+2. Copy `.env.example` values into `.env`
+3. Set `POLYMARKET_CHAIN_ID`, `POLYMARKET_MARKET_ID`, and `POLYMARKET_TOKEN_ID` for the market you want the web app to score
+4. Install everything:
    `make install`
-4. Start the web app:
+5. Install pre-commit hooks (once per clone):
+   `make hooks`
+6. Start the web app:
    `pnpm dev:web`
-5. Run the paper bot:
+7. Run the paper bot:
    `make paper`
 
 ## Useful Commands
 
 - Install everything: `make install`
 - Install research training extras: `make install-train`
+- Install pre-commit hooks: `make hooks`
 - Type-check the workspace: `make check`
 - Run tests: `make test`
 - Build the workspace: `make build`
@@ -97,10 +101,12 @@ flowchart LR
 - Shared tooling stays root-owned: `typescript`, `vitest`, `oxlint`, and `oxfmt` should be declared once in the root `package.json`.
 - Workspace packages should reuse the root toolchain instead of redeclaring those dependencies locally.
 - Adding a competing lint/test/format/compile tool should happen only as part of an explicit repo-wide migration.
+- Prefer single native binaries (`lefthook`, `oxlint`/`oxfmt`, `ruff`) over shell, Node, or Python orchestration scripts. `lefthook` runs the pre-commit suite (`oxfmt`, `oxlint`, `ruff format`, `ruff check`) directly on staged files.
 
 ## Web App Notes
 
-- The homepage is now a live research dashboard for one configured Polymarket market.
+- The web app runs on TanStack Start (Vite + React 19); start it with `pnpm dev:web`.
+- The homepage is a live research dashboard for one configured Polymarket market.
 - If those market env values are missing or invalid, the web app stays up and shows an inline setup checklist instead of returning a 500.
 - Predictions are sampled every 30 seconds and scored against the first valid midpoint at `+5 minutes`.
 - Accuracy is currently defined as `abs(predictionValue - truthValue) <= 0.02`.
