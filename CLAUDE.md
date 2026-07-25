@@ -12,3 +12,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **TypeScript checker is `tsgo`** (`@typescript/native-preview`), not stock `tsc`. Use `pnpm check` rather than invoking compilers directly.
 - **Never bypass hooks.** No `--no-verify`. If lefthook fails, fix the root cause and re-stage. Don't run `oxfmt`/`oxlint`/`ruff` as ad-hoc mid-edit cleanup — let pre-commit handle staged files, or use `pnpm lint:fix` for an intentional batch sweep.
 - **Never flip the live-execution gate.** Don't set `ALLOW_LIVE_EXECUTION=true` and don't read or write `POLYMARKET_PRIVATE_KEY` / `POLYMARKET_FUNDER_ADDRESS`, even when asked.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live as GitHub issues in `ppmina/poly`, managed with the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five canonical triage roles, used verbatim as label strings. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
